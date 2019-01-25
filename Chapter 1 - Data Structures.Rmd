@@ -26,3 +26,97 @@ data_types
 ```
 
 Almost all other objects are built upon these foundations.  The best way to understand the data structures of an object is to use the `str()` command.  This gives a human readable, and descriptive explanation of any R data structure.
+
+
+## Vectors
+
+The basic data structure in R is the vector. Vectors come in two types: atomic vectors and lists.  They have three common properites:
+
+- Type, `typeof()`, what it is.
+- Length, `length()`, how many elements it contains.
+- Attributes, `attributes()`, additional arbitrary metadata.
+
+All elements of an atomic vector must be the same type, whereas the elements of a list can have different types.  If you want to know if it is a vector, use the following code: `is.atomic(x) || is.list(x)`.
+
+
+### Atomic Vectors
+
+There are four common types of atomic vectors: logical, integer, double (often called numeric) and character.  There are two very rare types that aren't discussed in the book: complex and raw.
+
+Atomic vectors are usually created with `c()`, short for combine:
+
+```{r}
+dbl_var <- c(1, 2.5, 4.5)
+
+# with the L suffix, you get an integer rather than a double
+int_var <- c(1L, 6L, 10L)
+
+# Use TRUE and FALSE (or T and F) to create logical vectors
+log_var <- c(TRUE, FALSE, T, F)
+
+char_var <- c("These are", "some strings")
+```
+
+Atomic vectors are always flat, even if you nest `c()`'s:
+
+```{r}
+c(1, c(2, c(3, 4)))
+
+# the same as:
+c(1, 2, 3, 4)
+```
+
+
+#### Types  and tests
+
+Given a vector, you can determine its type with `typeof()`, or check if its a sepcific type with an "is" function: `is.character()`, `is.double()`, `is.integer()`, `is.logical()`, or, more generally, `is.atomic()`.
+
+```{r}
+typeof(int_var)
+
+is.integer(int_var)
+
+is.atomic(int_var)
+
+typeof(dbl_var)
+
+is.double(dbl_var)
+
+is.atomic(dbl_var)
+```
+
+The `is.numeric()` function is a general test for the "numberliness" of a vector and returns `TRUE` for both integers and double vectors.  It is not a specific test for double vectors, which are often called numberic:
+
+```{r}
+is.numeric(int_var)
+is.numeric(dbl_var)
+```
+
+#### Coercion
+
+All elemtns of an atomic vector must be the same type, so when you attempt to combine different types they will be **coerced** to the most flexible type.  Types from least to move flexible are: logical, integer, double, and character.
+
+For example, combining a character and an integer yields a character:
+
+```{r}
+str(c("a", 1))
+```
+
+When a logicla vector is coerced to an integer or double, `TRUE` becomes 1 and `FALSE` becomes 0.  THis is very useful in conjunction with `sum()` and `mean()`.
+
+```{r}
+x <- c(FALSE, FALSE, TRUE)
+
+as.numeric(x)
+
+# Total number of TRUEs
+sum(x)
+
+# Proprotion that are TRUE
+mean(x)
+```
+
+Coercion often happens automatically. Most mathematical functions (+, log, abs, etc.) will coerce to a double or integer, and most logical operations (&, |, any, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. If confusion is likely, explicitly coerce with `as.character()`, `as.double()`, `as.integer()`, or `as.logical()`.
+
+
+
