@@ -1,0 +1,28 @@
+---
+title: "Chapter 1: Data Structures"
+author: "Richard G. Gardiner"
+date: "1/23/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+There are five main types of data structures that can be organized by dimensionality and whether they're homogenous (all contents must be the same type) or heterogreneeous (the contents can be of different types):
+
+```{r}
+library(tidyverse)
+homogenous <- c("Atomic Vector", "Matrix", "Array")
+heterogeneous <- c("List", "Data Frame", "na")
+
+data_types <- cbind(homogenous, heterogeneous) 
+row.names(data_types) <- c("1d", "2d", "Nd")
+data_types <- as.data.frame(data_types)
+
+data_types
+```
+
+Almost all other objects are built upon these foundations.  The best way to understand the data structures of an object is to use the `str()` command.  This gives a human readable, and descriptive explanation of any R data structure.
