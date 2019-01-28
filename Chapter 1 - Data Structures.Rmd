@@ -118,5 +118,60 @@ mean(x)
 
 Coercion often happens automatically. Most mathematical functions (+, log, abs, etc.) will coerce to a double or integer, and most logical operations (&, |, any, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. If confusion is likely, explicitly coerce with `as.character()`, `as.double()`, `as.integer()`, or `as.logical()`.
 
+### Lists
+
+Lists are different from atomic vectors becasue their elements can be of any type, including other lists.  You construct a list b using `list()` instead of `c()`.
+
+```{r}
+y <- list(1:3, "a", c(TRUE, FALSE, TRUE), c(2.3, 5.9))
+str(x)
+```
+
+Lists are sometimes called *recursive* vectors, because a list can contain other lists.  This makes them fundamentally different from atomic vectors.
+
+```{r}
+z <- list(list(list(list)))
+z
+
+is.recursive(z)
+```
+
+`c()` wil combine several lists into one.  If given a combination of atomic vectors and lists, `c()` will coerce the vectors to lists before combining them.  Compare the results of `list()` and `c()`:
+
+```{r}
+a <- list(list(1, 2), c(3, 4))
+b <- c(list(1, 2), c(3, 4))
+```
+
+```{r}
+str(a)
+```
+
+```{r}
+str(b)
+```
+
+The `typeof()` a list is `list`.  You can test for a list with `is.list()` and coerce to a list with `as.list()`.  You can turn a list into an atomic vector with `unlist()`.  If elements of a lsit have different types, `unlist()` uses the same coercion rules as `c()`.  
+
+Lists are used to build up many of the more complicated data structures in R.  For example, both data frames and linear models objects are lists:
+
+```{r}
+is.list(mtcars)
+```
+
+```{r}
+mod <- lm(mpg ~ wt, data = mtcars)
+is.list(mod)
+```
+
+
+
+
+
+
+
+
+
+
 
 
