@@ -166,6 +166,15 @@ is.list(mod)
 
 
 
+### Matrices and Arrays
+
+A special case of the array is the matrix which has two dimensions.  Matrices are used commonly as part of hte mathematical machinery of stats.  You can create a matrix or array by calling `martix()` or `array()`.  
+
+```{r}
+a <- matrix(1:6, ncol = 3, nrow = 2)
+
+a
+```
 
 
 
