@@ -177,6 +177,27 @@ a
 ```
 
 
+## Data frames
+
+Data frmaes are the most common way of storing data in R and is a grat way to do data analysis. Under the hood, a data frame is a list of equal-length vectors.  This makes it a 2-deimnesional structure, so it shares properties of both the matrix and the list.  
+
+
+You can create a data frame using the data.frame(), which takes named vectors as input:
+```{r}
+df <- data.frame(x = 1:3, y = c("a", "b", "c"))
+
+str(df)
+```
+
+note that this command has a default of turning strings into fators, you can stop this by change the default:
+
+```{r}
+df <- data.frame(x = 1:3, 
+                 y = c("a", "b", "c"),
+                 stringsAsFactors = FALSE)
+
+str(df)
+```
 
 
 
