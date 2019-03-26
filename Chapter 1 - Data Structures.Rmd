@@ -207,5 +207,13 @@ You can coerce an object to a data frame with `as.data.frame()`:
 - A martix will create a data frame with the same number of columns and rows as the matrix
 
 
+### Combining data frames
+
+You can combine data frames using cbind() and rbind():
+```{r}
+cbind(df, data.frame(z = 3:1))
+
+rbind(df, data.frame(x = 10, y = "z"))
+```
 
 
