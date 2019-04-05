@@ -58,3 +58,18 @@ x[]
 x[0]
 ```
 
+## Data Frames
+
+```{r}
+library(gapminder)
+
+# filtering by row
+gapminder[gapminder$country == "Mexico",]
+
+
+# filtering by column
+gapminder[, c("year", "country")]
+
+```
+
+
