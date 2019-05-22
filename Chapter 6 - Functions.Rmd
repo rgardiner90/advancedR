@@ -42,4 +42,10 @@ environment(f)
 The one exception to the three parts rule are primitative functions like `sum()` which call C code directly and contain no R code.  There `formals()`, `body()`, and `environment()` are all thus NULL. Primitive functiosn are only found in the `base` package, and since they operate at a low level, they can b more efficient and can have different rules for argument matching.  This, however, comes at a cost of behaving differently from all other functions in R.  Hence the R core team generally avoids creating them unless there is no other option.
 
 
+```{r}
+f(2)
+one_to_ten <- seq(1:10)
+
+f(one_to_ten)
+```
 
