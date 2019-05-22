@@ -1,0 +1,45 @@
+---
+title: "Functions"
+author: "Richard G. Gardiner"
+date: "May 20, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Functions
+
+All R functions have three parts:
+
+- `body()`: the code inside the function
+- `formals()`: the list of arguments which controls how you can call the function.
+- `environment()`: the "map" of hte location of the function's variables.
+
+You can have R show you each of these:
+
+```{r}
+f <- function(x) {
+  x^2
+}
+
+f
+```
+
+```{r}
+formals(f)
+```
+
+```{r}
+body(f)
+```
+
+```{r}
+environment(f)
+```
+
+The one exception to the three parts rule are primitative functions like `sum()` which call C code directly and contain no R code.  There `formals()`, `body()`, and `environment()` are all thus NULL. Primitive functiosn are only found in the `base` package, and since they operate at a low level, they can b more efficient and can have different rules for argument matching.  This, however, comes at a cost of behaving differently from all other functions in R.  Hence the R core team generally avoids creating them unless there is no other option.
+
+
+
